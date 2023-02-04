@@ -2,25 +2,24 @@
 import { ref } from "vue";
 import { useCompanyStore } from "@/stores/company";
 import { Switch } from "@headlessui/vue";
-
 const locations = [
   "London",
-  " Manchester",
-  " Birmingham",
-  " West Yorkshire",
-  " Glasgow",
-  " Southampton/Portsmouth",
-  " Liverpool",
-  " Newcastle upon Tyne",
-  " Nottingham",
-  " Sheffield",
-  " Bristol",
-  " Belfast",
-  " Brighton-Worthing-Littlehampton",
-  " Leicester",
-  " Edinburgh",
-  " Bournemouth/Poole",
-  " Cardiff",
+  "Manchester",
+  "Birmingham",
+  "West Yorkshire",
+  "Glasgow",
+  "Southampton/Portsmouth",
+  "Liverpool",
+  "Newcastle upon Tyne",
+  "Nottingham",
+  "Sheffield",
+  "Bristol",
+  "Belfast",
+  "Brighton-Worthing-Littlehampton",
+  "Leicester",
+  "Edinburgh",
+  "Bournemouth/Poole",
+  "Cardiff",
 ];
 
 const companyStore = useCompanyStore();
@@ -35,7 +34,7 @@ const description = ref("");
 function submitForm() {
   companyStore.addRole({
     name: name.value,
-    link: "http://" + link.value,
+    link: link.value,
     location: location.value,
     remote: remote.value,
     hybrid: hybrid.value,
@@ -45,7 +44,7 @@ function submitForm() {
 </script>
 
 <template>
-  <div>
+  <div class="text-black">
     <div class="px-16 py-4 md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <div class="pr-4 py-4 sm:px-0">
@@ -56,7 +55,7 @@ function submitForm() {
         </div>
       </div>
       <div class="mt-5 md:col-span-2 md:mt-0">
-        <div class="shadow sm:overflow-hidden sm:rounded-md">
+        <div class="sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 px-4 py-5 sm:p-6">
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-6 sm:col-span-3">
@@ -72,16 +71,12 @@ function submitForm() {
 
             <div class="col-span-3 sm:col-span-2">
               <div class="mt-1 flex rounded-md shadow-sm">
-                <span
-                  class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500"
-                  >http://</span
-                >
                 <input
                   type="text"
                   name="link"
                   id="link"
                   v-model="link"
-                  class="px-3 py-2 block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                  class="rounded px-3 py-2 block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
                   placeholder="Link"
                 />
               </div>
@@ -98,31 +93,36 @@ function submitForm() {
               </select>
             </div>
 
-            <v-switch
-              v-model="remote"
-              hide-details
-              inset
-              color="purple-500"
-              :label="`Remote`"
-            ></v-switch>
-
-            <v-switch
-              v-model="hybrid"
-              hide-details
-              inset
-              color="purple-500"
-              :label="`Hybrid`"
-            ></v-switch>
-
-            <div>
-              <label
-                for="description"
-                class="block text-sm font-medium text-gray-700"
-                >Role Description</label
+            <div class="text-white flex items-center justify-between">
+              Remote
+              <Switch
+                v-model="remote"
+                :class="remote ? 'bg-purple-500' : 'bg-purple-300'"
+                class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
               >
+                <span
+                  :class="remote ? 'translate-x-[26px]' : 'translate-x-1'"
+                  class="translate-y-[4px] pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
+                />
+              </Switch>
+            </div>
+            <div class="text-white flex items-center justify-between">
+              Hybrid
+              <Switch
+                v-model="hybrid"
+                :class="hybrid ? 'bg-purple-500' : 'bg-purple-300'"
+                class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+              >
+                <span
+                  :class="hybrid ? 'translate-x-[26px]' : 'translate-x-1'"
+                  class="translate-y-[4px] pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
+                />
+              </Switch>
+            </div>
+            <div>
               <div class="mt-1">
                 <textarea
-                  id="description"
+                  placeholder="Role Description"
                   name="description"
                   rows="10"
                   v-model="description"
@@ -132,23 +132,16 @@ function submitForm() {
               <p class="mt-2 text-sm text-gray-500"></p>
             </div>
           </div>
-          <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+          <div class="px-4 py-3 text-right sm:px-6">
             <button
-              type="submit"
               @click="submitForm"
-              class="inline-flex justify-center rounded-md border border-transparent bg-purple-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+              class="rounded-md bg-purple-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
             >
-              Submit
+              Create Role
             </button>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="hidden sm:block" aria-hidden="true">
-    <div class="py-5">
-      <div class="border-t border-gray-200" />
     </div>
   </div>
 </template>
