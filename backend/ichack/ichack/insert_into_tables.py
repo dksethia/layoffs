@@ -7,68 +7,66 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 
-def insert_into_Companies(tuple):
+def insert_into_Companies(tuples):
     sql = "INSERT INTO Companies (\
             company_id, \
             name, \
-            logo_url, \
-            email, \
+            website_link, \
+            contact, \
+            address, \
             nr_people_recruited_from_website, \
+            logo_url, \
             sustainability_score, \
             diversity_inclusive, \
             description, \
-            website_link, \
             password\
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    val = tuple
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    val = tuples
     mycursor.executemany(sql, val)
     mydb.commit()
     print(mycursor.rowcount, "was inserted.")
 
 
-def insert_into_People(tuple):
+def insert_into_People(tuples):
     sql = "INSERT INTO People (\
             person_id, \
             first_name, \
             last_name, \
-            years_of_experience, \
             email, \
+            gender, \
             former_company, \
-            former_role, \
-            locations, \
-            remote, \
             linkedin, \
+            remote, \
+            locations, \
             diversity_preferences_lgbtq,\
-            diversity_preferences_minority, \
             diversity_preferences_disability, \
+            diversity_preferences_minority, \
             sustainability_preferences, \
             laidoff_time, \
             liked_roles, \
+            former_role, \
             profile_summary, \
             keywords_in_ps, \
+            years_of_experience, \
             password\
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    val = tuple
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    val = tuples
     mycursor.executemany(sql, val)
     mydb.commit()
     print(mycursor.rowcount, "was inserted.")
 
 
-def insert_into_Roles(tuple):
+def insert_into_Roles(tuples):
     sql = "INSERT INTO Roles (\
-            company_id, \
             name, \
             description, \
+            company_id, \
             location, \
             remote, \
             list_people_interested_in_role, \
             embedding\
         ) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    val = tuple
+    val = tuples
     mycursor.executemany(sql, val)
     mydb.commit()
     print(mycursor.rowcount, "was inserted.")
-
-
-if __name__ == "__main__":
-    pass
