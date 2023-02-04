@@ -8,6 +8,8 @@ export const useCompanyStore = defineStore("company", () => {
     // fetch company from backend
     company.value = new Company();
   }
-  
+
+  function addRole() {}
+
   return { company, getCompany };
 });

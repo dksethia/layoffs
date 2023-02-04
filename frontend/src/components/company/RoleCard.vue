@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const props = defineProps('role')
-
+const props = defineProps(['role'])
 </script>
 
 <template>
     <div>
-        <div>{{  }}</div>
+        <div>{{ props.role.name }}</div>
     </div>
 </template>
