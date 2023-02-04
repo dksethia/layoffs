@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-const d = ref(4);
-
-const double = computed(() => d.value * 2);
+import { useAuthStore } from "@/stores/auth";
+import UserProfile from "@/components/user/UserProfile.vue";
+import CompanyProfile from "@/components/company/CompanyProfile.vue";
 </script>
 <template>
-  <div>
-    <button @click="d++">inc</button>
-    <h1>{{ double }}This is the profile page</h1>
-  </div>
+    <UserProfile v-if="useAuthStore().isUser()"/>
+    <CompanyProfile v-else />
 </template>

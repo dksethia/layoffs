@@ -11,7 +11,7 @@ import RoleCard from "@/components/company/RoleCard.vue";
       <v-btn @click="router.push({ name: 'addRole' })"> Add new role </v-btn>
     </div>
     <RoleCard
-      v-for="role in useCompanyStore().roles"
+      v-for="role in useCompanyStore().getRoles()"
       :key="role.id"
       @click="router.push({ name: 'role', params: { id: role.id } })"
       :role="role"
