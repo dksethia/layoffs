@@ -27,9 +27,17 @@ export const useAuthStore = defineStore("auth", () => {
     userType.value = JSON.stringify(account);
   }
 
+  function isUser() {
+    if (!userType) {
+      return false;
+    }
+    const userObj = JSON.parse(userType.value!);
+    return userObj.type == 'user';
+  }
+
   function signOut() {
     userType.value = null;
   }
 
-  return { initAuth, userType, updateUser, signOut };
+  return { initAuth, userType, updateUser, signOut, isUser };
 });
