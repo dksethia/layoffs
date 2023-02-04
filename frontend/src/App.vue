@@ -2,6 +2,7 @@
 import NavBar from "./components/NavBar.vue";
 import SignIn from "./components/SignIn.vue";
 import { useAuthStore } from "./stores/auth";
+import UserView from "./views/UserView.vue";
 useAuthStore().initAuth();
 </script>
 
