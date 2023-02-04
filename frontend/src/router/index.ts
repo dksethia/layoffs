@@ -26,9 +26,14 @@ const router = createRouter({
       component: () => import("../views/ProfileView.vue"),
     },
     {
-      path: "/roles",
-      name: "roles",
-      component: () => import("../views/RoleView.vue"),
+      path: "/roles/add",
+      name: "addRole",
+      component: () => import("../views/AddRole.vue"),
+    },
+    {
+      path: "/roles/:id",
+      name: "role",
+      component: () => import("../views/Role.vue"),
     },
   ],
 });
