@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useAuthStore } from "@/stores/auth";
-import { LockClosedIcon } from "@heroicons/vue/20/solid";
 import { ref } from "vue";
 import UserSignUp from "./SignIn/UserSignUp.vue";
 import CompanySignUp from "./SignIn/CompanySignUp.vue";
+import UserSignIn from "./SignIn/UserSignIn.vue";
+import CompanySignIn from "./SignIn/CompanySignIn.vue";
 const accountType = ref<null | string>(null);
+const newUser = ref<boolean>(false);
 </script>
 
 <template>
@@ -15,7 +16,7 @@ const accountType = ref<null | string>(null);
       v-if="!accountType"
       class="flex flex-col justify-center items-center gap-16"
     >
-      <div class="text-6xl">Welcome to Rehire me.</div>
+      <div class="text-5xl">Welcome to BackToBusiness.</div>
       <div class="text-3xl">I am</div>
       <div class="flex justify-around w-screen text-3xl">
         <div
@@ -61,8 +62,10 @@ const accountType = ref<null | string>(null);
       </div>
     </div>
     <div v-else>
-      <UserSignUp v-if="accountType == 'user'" />
-      <CompanySignUp v-else-if="accountType == 'company'" />
+      <UserSignUp v-if="accountType == 'user' && newUser" />
+      <CompanySignUp v-else-if="accountType == 'company' && newUser" />
+      <UserSignIn v-else-if="accountType == 'user' && !newUser" />
+      <CompanySignIn v-else-if="accountType == 'company' && !newUser" />
       <button
         @click="accountType = null"
         class="text-purple-500 hover:text-purple-400"
@@ -70,6 +73,16 @@ const accountType = ref<null | string>(null);
         Go Back
       </button>
     </div>
-    <div class="hover:text-gray-500">Already have an account? Login now</div>
+    <div
+      v-if="accountType"
+      class="hover:text-gray-500 my-5"
+      @click="newUser = !newUser"
+    >
+      {{
+        newUser
+          ? "Already have an account? Login now!"
+          : "New to BackToBusiness? Sign up now!"
+      }}
+    </div>
   </div>
 </template>
