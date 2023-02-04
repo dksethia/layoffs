@@ -31,6 +31,7 @@ def insert_into_People(tuple):
             person_id, \
             first_name, \
             last_name, \
+            years_of_experience, \
             email, \
             former_company, \
             former_role, \
@@ -42,11 +43,11 @@ def insert_into_People(tuple):
             diversity_preferences_disability, \
             sustainability_preferences, \
             laidoff_time, \
-            liked_companies, \
+            liked_roles, \
             profile_summary, \
             keywords_in_ps, \
             password\
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = tuple
     mycursor.executemany(sql, val)
     mydb.commit()

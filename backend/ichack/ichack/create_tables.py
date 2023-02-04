@@ -31,6 +31,7 @@ def create_People_table():
                 person_id int,\
                 first_name varchar(255),\
                 last_name varchar(255),\
+                years_of_experience int,\
                 email varchar(255),\
                 former_company varchar(255),\
                 former_role varchar(255),\
@@ -42,7 +43,7 @@ def create_People_table():
                 diversity_preferences_disability boolean,\
                 sustainability_preferences boolean,\
                 laidoff_time DATE,\
-                liked_companies varchar(2048),\
+                liked_roles varchar(2048),\
                 profile_summary varchar(2048),\
                 keywords_in_ps varchar(2048),\
                 password varchar(255)\
