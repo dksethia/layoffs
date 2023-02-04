@@ -8,7 +8,7 @@ mycursor = mydb.cursor()
 
 
 def drop_Companies_table():
-    sql = "DROP TABLE Companies;"
+    sql = "DROP TABLE IF EXISTS Companies;"
 
     mycursor.execute(sql)
     mydb.commit()
@@ -16,7 +16,7 @@ def drop_Companies_table():
 
 
 def drop_People_table():
-    sql = "DROP TABLE People;"
+    sql = "DROP TABLE IF EXISTS People;"
 
     mycursor.execute(sql)
     mydb.commit()
@@ -24,7 +24,7 @@ def drop_People_table():
 
 
 def drop_Roles_table():
-    sql = "DROP TABLE Roles;"
+    sql = "DROP TABLE IF EXISTS Roles;"
 
     mycursor.execute(sql)
     mydb.commit()
