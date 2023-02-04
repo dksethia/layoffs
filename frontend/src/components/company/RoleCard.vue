@@ -1,9 +1,10 @@
 <script setup lang="ts">
-const props = defineProps(['role'])
+const props = defineProps(["role"]);
 </script>
 
 <template>
-    <v-card :title="props.role.name">
-        
-    </v-card>
+  <div class="bg-white rounded my-3 p-3">
+    <h2 class="font-bold">{{ props.role.name }}</h2>
+    <p>{{ props.role.location }}</p>
+  </div>
 </template>
