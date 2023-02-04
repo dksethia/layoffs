@@ -28,7 +28,7 @@ const router = createRouter({
     {
       path: "/roles/add",
       name: "addRole",
-      component: () => import("../components/company/RoleView.vue),
+      component: () => import("../views/AddRole.vue"),
     },
     {
       path: "/roles/:id",
