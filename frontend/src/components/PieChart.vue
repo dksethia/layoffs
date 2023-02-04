@@ -10,7 +10,7 @@ setInterval(() => {
 </script>
 
 <template>
-  <div class="pie" :style="'--p: ' + p + '; --b: 10px; --c: purple'">
+  <div class="pie" :style="'--p: ' + p + '; --b: 15px; --c: purple'">
     {{ Math.round(p) }}%
   </div>
 </template>

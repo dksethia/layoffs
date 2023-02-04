@@ -9,6 +9,7 @@ export const useCompanyStore = defineStore("company", () => {
   function getCompany(companyID: string) {
     // fetch company from backend
     company.value = {
+<<<<<<< Updated upstream
         id: "1",
         logoUrl: "logourl",
         email: "example@example.com",
@@ -29,6 +30,11 @@ export const useCompanyStore = defineStore("company", () => {
         { id: "4", name: "Cloud Engineer", location: "Birmingham" },
         { id: "5", name: "DevOps Engineer", location: "Bristol" },
       ]
+=======
+      roles: [
+      ],
+    };
+>>>>>>> Stashed changes
   }
 
   function addRole(role: Role) {
