@@ -56,6 +56,7 @@ def create_People_table():
 
 def create_Roles_table():
     sql = "CREATE TABLE IF NOT EXISTS Roles (\
+                company_id int, \
                 name varchar(255),\
                 description varchar(255),\
                 location varchar(255),\

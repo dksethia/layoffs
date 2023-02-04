@@ -56,13 +56,14 @@ def insert_into_People(tuple):
 
 def insert_into_Roles(tuple):
     sql = "INSERT INTO Roles (\
+            company_id, \
             name, \
             description, \
             location, \
             remote, \
             list_people_interested_in_role, \
             embedding\
-        ) VALUES (%s, %s, %s, %s, %s, %s)"
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s)"
     val = tuple
     mycursor.executemany(sql, val)
     mydb.commit()
