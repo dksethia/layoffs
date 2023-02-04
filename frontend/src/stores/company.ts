@@ -11,5 +11,7 @@ export const useCompanyStore = defineStore("company", () => {
 
   function addRole() {}
 
-  return { company, getCompany };
+  function getCandidates() {}
+
+  return { company, getCompany, addRole, getCandidates };
 });
