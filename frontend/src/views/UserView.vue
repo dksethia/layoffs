@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
-
+<script setup lang="ts">
+</script>
 <template>
-  <div class="flex grow">
+  <div>
     <h1>This is the user page</h1>
   </div>
 </template>
