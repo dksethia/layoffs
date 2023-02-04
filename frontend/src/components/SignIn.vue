@@ -86,3 +86,11 @@ const newUser = ref<boolean>(false);
     </div>
   </div>
 </template>
+
+<style>
+input,
+textarea,
+select {
+  background-color: white !important;
+}
+</style>
