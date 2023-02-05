@@ -132,12 +132,14 @@ const selectedRoles = computed(() =>
           }
         "
       >
-        <div class="rounded-lg shadow-lg justify-around bg-[#1a1c23] mr-4 p-4">
+        <div
+          class="flex flex-col justify-between rounded-lg shadow-lg justify-around bg-[#1a1c23] mr-4 p-4"
+        >
           <div class="font-bold text-xl">{{ r.name }}</div>
           <div class="text-sm">{{ r.description }}</div>
         </div>
         <div
-          class="flex-2 rounded-lg shadow-lg justify-around bg-[#1a1c23] p-4"
+          class="flex flex-col justify-between rounded-lg shadow-lg justify-around bg-[#1a1c23] p-4"
         >
           <div class="font-bold text-xl">{{ r.company.name }}</div>
           <div class="text-sm">{{ r.company.description }}</div>
