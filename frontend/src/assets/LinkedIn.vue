@@ -3,8 +3,8 @@
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     version="1.1"
-    width="32"
-    height="32"
+    width="48"
+    height="48"
     viewBox="0 0 256 256"
     xml:space="preserve"
   >
