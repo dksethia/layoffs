@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from ichack.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", ichack_view, name="ichack_view"),
+    # path(
+    #     "get-skills-and-relevant-skills",
+    #     get_skills_and_relevant_skills_view,
+    #     name="get_skills_and_relevant_skills",
+    # ),
+    # path("categories", get_percentages_view, name="get_percentages_view"),
+    # path("role/<int:role>", get_role_data_view, name="get_role_data_view"),
 ]

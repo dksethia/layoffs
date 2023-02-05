@@ -1,10 +1,10 @@
 import yake
 from gensim.utils import tokenize
+	
+kw_extractor = yake.KeywordExtractor(lan="en", n=1, dedupLim=0.9, dedupFunc='seqm', windowsSize=1, top=10, features=None)
+kw_extractor_n2 = yake.KeywordExtractor(lan="en", n=2, dedupLim=0.9, dedupFunc='seqm', windowsSize=1, top=10, features=None)
 
 def create_embedding(text):
-	
-	kw_extractor = yake.KeywordExtractor(lan="en", n=1, dedupLim=0.9, dedupFunc='seqm', windowsSize=1, top=10, features=None)
-	kw_extractor_n2 = yake.KeywordExtractor(lan="en", n=2, dedupLim=0.9, dedupFunc='seqm', windowsSize=1, top=10, features=None)
 
 	text = text.lower()
 	words = list(tokenize(text, lowercase=True, deacc=True, errors='ignore'))
