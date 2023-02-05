@@ -20,11 +20,9 @@ from ichack.views import *
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", ichack_view, name="ichack_view"),
-    # path(
-    #     "get-skills-and-relevant-skills",
-    #     get_skills_and_relevant_skills_view,
-    #     name="get_skills_and_relevant_skills",
-    # ),
-    # path("categories", get_percentages_view, name="get_percentages_view"),
-    # path("role/<int:role>", get_role_data_view, name="get_role_data_view"),
+    path("get_company/<int:comp_id>", request_get_company_for_id),
+    path("get_roles/<int:comp_id>", request_get_roles_for_company),
+    path("user_query/<str:text>", request_get_roles_for_user_query),
+    path("users_for_role/<int:role_id>", request_get_users_for_roles),
+    path("create_company/", request_post_create_new_company),
 ]

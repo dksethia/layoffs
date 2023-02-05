@@ -65,7 +65,8 @@ def create_Roles_table():
                 location varchar(500),\
                 remote boolean, \
                 list_people_interested_in_role text,\
-                embedding text\
+                embedding text,\
+                role_id int\
         );"
 
     mycursor.execute(sql)
