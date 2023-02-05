@@ -6,7 +6,7 @@ setInterval(() => {
   if (p.value < props.p) {
     p.value += 2;
   }
-}, 5);
+}, 15);
 </script>
 
 <template>
