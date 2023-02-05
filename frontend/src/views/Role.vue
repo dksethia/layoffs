@@ -8,9 +8,11 @@ const route = useRoute()
 </script>
 
 <template>
+  <div>
     <CandidateCard
       v-for="candidate in useCompanyStore().getCandidates(route.params.id[0])"
       :key="candidate.id"
       :candidate="candidate"
     />
+  </div>
 </template>

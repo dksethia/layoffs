@@ -32,6 +32,10 @@ export const useCompanyStore = defineStore("company", () => {
     ];
   }
 
+  function getRole(id: string) {
+    return {interestedPeople: [`${id}`]}
+  }
+
   function addRole(role: Role) {
     console.log(role);
   }
@@ -42,5 +46,5 @@ export const useCompanyStore = defineStore("company", () => {
     ]
   }
 
-  return { company, getCompany, addRole, getCandidates, getRoles };
+  return { company, getCompany, addRole, getCandidates, getRoles, getRole };
 });
