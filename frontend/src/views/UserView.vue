@@ -140,6 +140,8 @@ const selectedCompanies = computed(() =>
         </v-dialog>
     </div>
     </div>
+    </div>
+    </div>
 </template>
 <style scoped>
 :deep(input) {

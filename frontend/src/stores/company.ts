@@ -11,6 +11,7 @@ export const useCompanyStore = defineStore("company", () => {
     company.value = {
       id: "1",
       logoUrl: "logourl",
+      name:"Example Company",
       email: "example@example.com",
       recruited: 10,
       sustainabilityScore: 50,
@@ -18,16 +19,6 @@ export const useCompanyStore = defineStore("company", () => {
       description: "description",
       website: "website",
     };
-        id: "1",
-        name:"Example Company",
-        logoUrl: "logourl",
-        email: "example@example.com",
-        recruited: 10,
-        sustainabilityScore: 50,
-        inclusivityScore: 60,
-        description: "description",
-        website: "website",
-    }
   }
 
   function getRoles() {
