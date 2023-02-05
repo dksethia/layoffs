@@ -47,8 +47,16 @@ export const useCompanyStore = defineStore("company", () => {
     return {  list_people_interested_in_role: [`${id}`]}
   }
 
-  function addRole(role: Role) {
-    console.log(role);
+  async function addRole(role: Role) {
+    const response = await fetch("/api/create_role/", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(role),
+    })
+    console.log(response)
+    return response
   }
 
   function getCandidates(roleId: string) {

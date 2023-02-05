@@ -38,7 +38,7 @@ const auth = useAuthStore();
             @keyup.enter="() => router.push('/')"
             @click="() => router.push('/')"
           >
-            BackToBusiness
+            BackInBusiness
           </div>
         </div>
         <div

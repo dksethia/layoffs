@@ -20,6 +20,7 @@ from ichack.views import *
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", ichack_view, name="ichack_view"),
+    path("get_user/<int:user_id>", request_get_user_for_id),
     path("get_company/<int:comp_id>", request_get_company_for_id),
     path("get_roles/<int:comp_id>", request_get_roles_for_company),
     path("user_query/<str:text>", request_get_roles_for_user_query),

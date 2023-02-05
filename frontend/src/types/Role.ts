@@ -1,6 +1,7 @@
 import type { Company } from "./Company";
 
 export interface Role {
+  companyId: string;
   name: string;
   location: string;
   remote: boolean;
@@ -9,7 +10,6 @@ export interface Role {
 
 export interface RoleDB extends Role {
   role_id: string;
-  companyId: string;
   list_people_interested_in_role: string[];
 }
 

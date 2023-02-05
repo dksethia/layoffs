@@ -112,7 +112,7 @@ const interval = setInterval(() => {
             <h2 class="font-bold text-4xl"> Open Roles </h2>
             <div
                 v-for="r in roles"
-                class="w-4/5 flex justify-between text-white m-2 p-5"
+                class="w-4/5 flex justify-center text-white m-2 p-5"
                 @click="
                 () => {}
                 "
@@ -122,24 +122,6 @@ const interval = setInterval(() => {
                 >
                 <div class="font-bold text-xl">{{ r.name }}</div>
                 <div class="text-sm">{{ r.description }}</div>
-                </div>
-                <div
-                class="flex flex-col justify-between rounded-lg shadow-lg justify-around bg-[#1a1c23] p-4"
-                >
-                <div class="font-bold text-xl">{{ r.company.name }}</div>
-                <div class="text-sm">{{ r.company.description }}</div>
-                </div>
-                <div
-                class="flex justify-around gap-5 text-center bg-[#1a1c23] p-4 rounded-lg"
-                >
-                <div>
-                    <div>Sustainability Score:</div>
-                    <PieChart :p="r.company.sustainability_score * 100" />
-                </div>
-                <div>
-                    <div>Inclusivity Score:</div>
-                    <PieChart :p="r.company.diversity_inclusive * 100" />
-                </div>
                 </div>
             </div>
         </div>

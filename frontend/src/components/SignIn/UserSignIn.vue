@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { useAuthStore } from "@/stores/auth";
 import { ref } from "vue";
 const email = ref("");
 const password = ref("");
+function signin() {
+  useAuthStore().signIn(email.value, password.value, 'user')
+}
 </script>
 
 <template>
@@ -58,6 +62,7 @@ const password = ref("");
 
       <div>
         <button
+        @click="signin"
           class="group relative flex w-full justify-center text-black rounded-md border border-transparent bg-purple-300 py-2 px-4 text-sm font-medium hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-2"
         >
           Sign In

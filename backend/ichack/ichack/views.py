@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .query import query_with_fetchall
 
+from .insert_into_tables import *
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -12,6 +13,7 @@ from .get_roles_for_company import get_roles_for_company
 from .get_roles_for_user_query import get_roles_for_user_query
 from .get_users_for_roles import get_users_for_roles
 from .get_login_verification import get_login_verification
+from .get_user_for_id import get_user_for_id
 
 from .post_create_new_company import post_create_company
 from .post_create_role import post_create_role
@@ -22,6 +24,11 @@ def ichack_view(request):
     """Serve the html file for the ichack"""
     return render(request, "index.html")
 
+@api_view(["GET"])
+def request_get_user_for_id(request, user_id=None):
+    print(request)
+    response = get_user_for_id(user_id)
+    return Response(response, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
@@ -47,7 +54,7 @@ def request_get_users_for_roles(request, role_id=None):
 
 @api_view(["GET"])
 def request_get_login_verification(request, email=None, password=None):
-    print(email, password)
+    print(str(email), str(password))
     return Response(get_login_verification(email, password), status=status.HTTP_200_OK)
 
 
@@ -61,12 +68,14 @@ def request_post_create_new_user(request):
 @api_view(["POST"])
 def request_post_create_new_company(request):
     data = request.POST
-    print(data)
+    print(request)
     post_create_company(data)
     return Response({}, status=status.HTTP_200_OK)
 
 @api_view(["POST"])
 def request_post_create_role(request):
-    data = request.POST
-    post_create_role(data)
+    data = request.body
+    print(data)
+    new_role = post_create_role(data)
+    insert_into_Roles(new_role)
     return Response({}, status=status.HTTP_200_OK)

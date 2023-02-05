@@ -3,7 +3,6 @@ import NavBar from "./components/NavBar.vue";
 import SignIn from "./components/SignIn.vue";
 import { useAuthStore } from "./stores/auth";
 useAuthStore().initAuth();
-useAuthStore().updateUser({ type: "company", ID: "117" });
 </script>
 
 <template>

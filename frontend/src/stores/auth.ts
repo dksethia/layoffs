@@ -35,9 +35,22 @@ export const useAuthStore = defineStore("auth", () => {
     return userObj.type == 'user';
   }
 
+  function signIn(email:string, password:string, type:string) {
+    fetch(`/api/login/${email};${password}`).then(res => res.json()).then(res => {
+      if (type == 'user') {
+        useUserStore().setUser(res)
+        userType.value = JSON.stringify({type, ID: res.id})
+
+      } else {
+        // company signin
+      }
+      }
+      )
+  }
+
   function signOut() {
     userType.value = null;
   }
 
-  return { initAuth, userType, updateUser, signOut, isUser };
+  return { initAuth, userType, updateUser, signOut, isUser, signIn };
 });

@@ -33,6 +33,7 @@ const description = ref("");
 
 function submitForm() {
   companyStore.addRole({
+    companyId: "117",
     name: name.value,
     location: location.value,
     remote: remote.value,
