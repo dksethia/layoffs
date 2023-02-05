@@ -7,5 +7,6 @@ export const useUserStore = defineStore("user", () => {
     // fetch user from backend
     user.value = new User();
   }
+
   return { user, getUser };
 });
