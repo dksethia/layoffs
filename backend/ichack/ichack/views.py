@@ -11,6 +11,7 @@ from .get_company_for_id import get_company_for_id
 from .get_roles_for_company import get_roles_for_company
 from .get_roles_for_user_query import get_roles_for_user_query
 from .get_users_for_roles import get_users_for_roles
+from .get_login_verification import get_login_verification
 
 from .post_create_new_company import post_create_company
 from .post_create_role import post_create_role
@@ -44,20 +45,28 @@ def request_get_users_for_roles(request, role_id=None):
     response = get_users_for_roles(role_id)
     return Response(response, status=status.HTTP_200_OK)
 
+@api_view(["GET"])
+def request_get_login_verification(request, email=None, password=None):
+    print(email, password)
+    return Response(get_login_verification(email, password), status=status.HTTP_200_OK)
+
 
 
 @api_view(["POST"])
 def request_post_create_new_user(request):
-    post_create_user(request)
+    data = request.POST
+    post_create_user(data)
     return Response({}, status=status.HTTP_200_OK)
 
 @api_view(["POST"])
 def request_post_create_new_company(request):
-    print("request:", request.request.json())
-    post_create_company(request)
+    data = request.POST
+    print(data)
+    post_create_company(data)
     return Response({}, status=status.HTTP_200_OK)
 
 @api_view(["POST"])
 def request_post_create_role(request):
-    post_create_role(request)
+    data = request.POST
+    post_create_role(data)
     return Response({}, status=status.HTTP_200_OK)

@@ -25,4 +25,7 @@ urlpatterns = [
     path("user_query/<str:text>", request_get_roles_for_user_query),
     path("users_for_role/<int:role_id>", request_get_users_for_roles),
     path("create_company/", request_post_create_new_company),
+    path("create_user/", request_post_create_new_user),
+    path("create_role/", request_post_create_role),
+    path("login/<str:email>;<str:password>", request_get_login_verification)
 ]
