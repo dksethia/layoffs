@@ -64,12 +64,11 @@ const selectedCompanies = computed(() =>
 
 <template>
   <div class="flex grow justify-between">
-    <div class="bg-slate-900 w-96">
+    <div class="bg-[#1a1c23] w-96 text-white">
       <div class="flex flex-col items-center">
-        <div class="p-5">Locations</div>
         <v-select
           v-model="selectedLocations"
-          label="Select"
+          label="Locations"
           :items="Array.from(locations)"
           multiple
           class="w-full"
@@ -79,7 +78,7 @@ const selectedCompanies = computed(() =>
         Show remote locations
         <Switch
           v-model="remote"
-          :class="remote ? 'bg-purple-500' : 'bg-purple-300'"
+          :class="remote ? 'bg-purple-300' : 'bg-purple-200'"
           class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           <span
@@ -92,7 +91,7 @@ const selectedCompanies = computed(() =>
         Show only inclusive employers
         <Switch
           v-model="inclusive"
-          :class="inclusive ? 'bg-purple-500' : 'bg-purple-300'"
+          :class="inclusive ? 'bg-purple-300' : 'bg-purple-200'"
           class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           <span
@@ -104,7 +103,7 @@ const selectedCompanies = computed(() =>
     </div>
     <div class="flex flex-col items-center grow">
       <!-- Main part of the website -->
-      <div class="w-3/5 bg-slate-800 m-2 p-4 rounded-lg">
+      <div class="w-3/5 m-2 p-4 rounded-lg">
         <label for="email-address" class="sr-only">Search</label>
         <input
           id="search"
@@ -115,7 +114,7 @@ const selectedCompanies = computed(() =>
       </div>
       <div
         v-for="c in selectedCompanies"
-        class="w-3/5 shadow-lg flex justify-between bg-slate-900 m-2 p-5 rounded-lg"
+        class="w-3/5 shadow-lg flex justify-between bg-[#1a1c23] text-white m-2 p-5 rounded-lg"
       >
         <div class="flex flex-col justify-around">
           <div class="font-bold text-xl">{{ c.name }}</div>

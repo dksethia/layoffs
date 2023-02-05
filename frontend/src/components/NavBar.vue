@@ -8,7 +8,7 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/vue";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/vue/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 import router from "@/router";
 import { useAuthStore } from "@/stores/auth";
 
@@ -16,7 +16,7 @@ const auth = useAuthStore();
 </script>
 
 <template>
-  <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
+  <Disclosure as="nav" class="shadow-lg bg-[#1a1c23]" v-slot="{ open }">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -30,7 +30,7 @@ const auth = useAuthStore();
           </DisclosureButton>
         </div>
         <div
-          class="flex flex-1 items-center justify-between sm:items-stretch sm:justify-start"
+          class="flex flex-1 items-center justify-between sm:items-stretch sm:justify-start text-2xl pl-2"
         >
           <div class="font-bold" @click="() => router.push('/')">
             BackToBusiness
@@ -39,14 +39,6 @@ const auth = useAuthStore();
         <div
           class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
         >
-          <button
-            type="button"
-            class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-          >
-            <span class="sr-only">View notifications</span>
-            <BellIcon class="h-6 w-6" aria-hidden="true" />
-          </button>
-
           <!-- Profile dropdown -->
           <Menu as="div" class="relative ml-3">
             <div>
@@ -80,16 +72,6 @@ const auth = useAuthStore();
                       'block px-4 py-2 text-sm text-gray-700',
                     ]"
                     >Profile</a
-                  >
-                </MenuItem>
-                <MenuItem v-slot="{ active }">
-                  <a
-                    href="#"
-                    :class="[
-                      active ? 'bg-gray-100' : '',
-                      'block px-4 py-2 text-sm text-gray-700',
-                    ]"
-                    >Settings</a
                   >
                 </MenuItem>
                 <MenuItem v-slot="{ active }">

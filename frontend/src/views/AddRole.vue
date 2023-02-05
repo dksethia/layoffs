@@ -64,7 +64,7 @@ function submitForm() {
                   type="text"
                   name="name"
                   v-model="name"
-                  class="px-3 py-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                  class="px-3 py-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-300 focus:ring-purple-300 sm:text-sm"
                 />
               </div>
             </div>
@@ -76,7 +76,7 @@ function submitForm() {
                   name="link"
                   id="link"
                   v-model="link"
-                  class="rounded px-3 py-2 block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                  class="rounded px-3 py-2 block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-purple-300 focus:ring-purple-300 sm:text-sm"
                   placeholder="Link"
                 />
               </div>
@@ -86,7 +86,7 @@ function submitForm() {
               <select
                 name="location"
                 v-model="location"
-                class="text-black px-3 py-2 mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-purple-500 focus:outline-none focus:ring-purple-500 sm:text-sm"
+                class="text-black px-3 py-2 mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-purple-300 focus:outline-none focus:ring-purple-300 sm:text-sm"
               >
                 <option value="">Please select a Location</option>
                 <option v-for="l in locations">{{ l }}</option>
@@ -97,7 +97,7 @@ function submitForm() {
               Remote
               <Switch
                 v-model="remote"
-                :class="remote ? 'bg-purple-500' : 'bg-purple-300'"
+                :class="remote ? 'bg-purple-300' : 'bg-purple-300'"
                 class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
               >
                 <span
@@ -110,7 +110,7 @@ function submitForm() {
               Hybrid
               <Switch
                 v-model="hybrid"
-                :class="hybrid ? 'bg-purple-500' : 'bg-purple-300'"
+                :class="hybrid ? 'bg-purple-300' : 'bg-purple-300'"
                 class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
               >
                 <span
@@ -126,7 +126,7 @@ function submitForm() {
                   name="description"
                   rows="10"
                   v-model="description"
-                  class="px-3 py-2 t-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                  class="px-3 py-2 t-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-300 focus:ring-purple-300 sm:text-sm"
                 />
               </div>
               <p class="mt-2 text-sm text-gray-500"></p>
@@ -135,7 +135,7 @@ function submitForm() {
           <div class="px-4 py-3 text-right sm:px-6">
             <button
               @click="submitForm"
-              class="rounded-md bg-purple-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+              class="rounded-md bg-purple-300 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-2"
             >
               Create Role
             </button>
