@@ -19,7 +19,7 @@ export const useAuthStore = defineStore("auth", () => {
     if (userObj.type == "user") {
       useUserStore().getUser(userObj.ID);
     } else if (userObj.type == "company") {
-      useCompanyStore().getCompany(userObj.ID);
+      useCompanyStore().getCompany();
     }
   }
 

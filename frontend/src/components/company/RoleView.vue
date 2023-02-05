@@ -1,7 +1,27 @@
 <script setup lang="ts">
 import router from "@/router";
+import {ref} from 'vue';
 import { useCompanyStore } from "@/stores/company";
 import RoleCard from "@/components/company/RoleCard.vue";
+import type { RoleDB } from "@/types/Role";
+
+const roles = ref<RoleDB[]>([])
+// let companyId = ''
+
+// fetch(`/api/user_query/developer`)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log(data.response[0].company.company_id)
+//       companyId = data.response[0].company.company_id
+//     });
+
+fetch(`/api/get_roles/117`)
+    .then((response) => response.json())
+    .then((data) => {
+      const items: RoleDB[] = data.items;
+      items.forEach((item) => roles.value.push(item))
+    });
+
 </script>
 
 <template>
@@ -12,10 +32,10 @@ import RoleCard from "@/components/company/RoleCard.vue";
     </div>
     <RoleCard
       tabindex="0"
-      @keyup.enter="router.push({ name: 'role', params: { id: role.id } })"
-      v-for="role in useCompanyStore().getRoles()"
-      :key="role.id"
-      @click="router.push({ name: 'role', params: { id: role.id } })"
+      v-for="role in roles"
+      @keyup.enter="router.push({ name: 'role', params: { id: role.role_id } })"
+      :key="role.role_id"
+      @click="router.push({ name: 'role', params: { id: role.role_id } })"
       :role="role"
     />
   </div>

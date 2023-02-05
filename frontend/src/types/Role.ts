@@ -8,9 +8,9 @@ export interface Role {
 }
 
 export interface RoleDB extends Role {
-  roleId: string;
+  role_id: string;
   companyId: string;
-  interestedPeople: string[];
+  list_people_interested_in_role: string[];
 }
 
 export interface RoleWithCompany extends RoleDB {

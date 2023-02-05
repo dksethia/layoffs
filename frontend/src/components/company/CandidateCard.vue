@@ -9,7 +9,7 @@ const route = useRoute()
 const companyStore = useCompanyStore()
 
 function isInterested() {
-  return companyStore.getRole(route.params.id[0]).interestedPeople.includes(props.candidate.id)
+  return companyStore.getRole(route.params.id[0]).list_people_interested_in_role.includes(props.candidate.id)
 }
 </script>
 

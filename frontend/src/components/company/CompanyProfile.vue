@@ -8,8 +8,8 @@ const company: Company = {
   name: "YouTube",
   email: "email@yt.com",
   recruited: 900,
-  sustainabilityScore: 0.9,
-  inclusivityScore: 0.5,
+  sustainability_score: 0.9,
+  diversity_inclusive: 0.5,
   description:
     "An amazing company where you can help build the website for watching cat videos.",
   website: "youtube.com",
@@ -40,11 +40,11 @@ const interval = setInterval(() => {
     <div class="flex flex-col items-center">
       <div class="flex flex-col items-center">
         <div class="text-center">Sustainability Score</div>
-        <PieChart :p="company.sustainabilityScore * 100" />
+        <PieChart :p="company.sustainability_score * 100" />
       </div>
       <div class="flex flex-col items-center">
         <div class="text-center">Inclusivity Score</div>
-        <PieChart :p="company.inclusivityScore * 100" />
+        <PieChart :p="company.diversity_inclusive * 100" />
       </div>
     </div>
     <div class="w-1/2">

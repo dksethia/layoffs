@@ -7,7 +7,7 @@ const user = {
   lastName: "Von Matterhorn",
   email: "lorenzo@hotmail.com",
   formerCompany: "Google",
-  formerRole: "Owner",
+  formerRole: "Software Engineer",
   experience: 27,
   linkedin: "https://www.lorenzo.linkedin.com",
   password: "ichack",

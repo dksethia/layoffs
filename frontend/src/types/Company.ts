@@ -1,13 +1,16 @@
 import type { RoleDB } from "./Role";
 
 export interface Company {
-  id: string,
+  address: string,
+  company_id: string,
+  contact: string,
   name: string,
   email: string,
   recruited: number,
-  sustainabilityScore: number,
-  inclusivityScore: number,
+  sustainability_score: number,
+  diversity_inclusive: number,
   description: string,
-  website: string,
+  website_link: string,
   logoUrl: string,
+  
 }
