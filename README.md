@@ -1,5 +1,11 @@
 # layoffs
 
+## Hires / Lay-offs Grpahs
+<img src="screenshots/w1.png" width="100%" />
+<img src="screenshots/w2.png" width="100%" />
+
+
+
 
 ## Welcome Page
 <img src="screenshots/WelcomePage.jpg" width="100%" />
