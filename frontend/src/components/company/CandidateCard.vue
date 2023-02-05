@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import LinkedIn from "@/assets/LinkedIn.vue";
 import Heart from "@/assets/Heart.vue";
+import { useRoute } from 'vue-router';
+import { useCompanyStore } from "@/stores/company";
 const props = defineProps(["candidate"]);
+const route = useRoute()
+
+const companyStore = useCompanyStore()
+
+function isInterested() {
+  return companyStore.getRole(route.params.id[0]).interestedPeople.includes(props.candidate.id)
+}
 </script>
 
 <template>
@@ -31,7 +40,7 @@ const props = defineProps(["candidate"]);
           Email
         </a>
       </div>
-      <div class="flex items-center px-5 pl-10">
+      <div class="flex items-center px-5" :class="{ invisible: !isInterested() }">
           <Heart />
       </div>
     </div>

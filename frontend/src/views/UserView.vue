@@ -3,33 +3,36 @@ import { computed, ref } from "vue";
 import { Switch } from "@headlessui/vue";
 import PieChart from "../components/PieChart.vue";
 import type { RoleWithCompany } from "@/types/Role";
+import { stringifyExpression } from "@vue/compiler-core";
+import { useAuthStore } from "@/stores/auth";
 import { useUserStore } from "@/stores/user";
-import Heart from "../assets/Heart.vue"
-import HeartEmpty from "../assets/HeartEmpty.vue"
 
-const userId = "123"
+const userId = useUserStore().user!.id;
 
 const roles = ref<RoleWithCompany[]>([
-    {
+  {
     company: {
-    id: "1234",
-    name: "YouTube",
-    email: "email@yt.com",
-    recruited: 90,
-    sustainabilityScore: 0.9,
-    inclusivityScore: 0.5,
-    description:
-      "An amazing company where you can help build the website for watching cat videos.",
-    website: "youtube.com",
-    logoUrl: "url"},
+      id: "1234",
+      name: "YouTube",
+      email: "email@yt.com",
+      recruited: 90,
+      sustainabilityScore: 0.9,
+      inclusivityScore: 0.5,
+      description:
+        "An amazing company where you can help build the website for watching cat videos.",
+      website: "youtube.com",
+      logoUrl: "url",
+    },
     roleId: "1234",
     companyId: "1234",
     name: "Software Engineer",
     location: "US",
     remote: true,
-    description: "Role description description description description description description description description",
-    interestedPeople: ['123', '456']
-  }]);
+    description:
+      "Role description description description description description description description description",
+    interestedPeople: ["123", "456"],
+  },
+]);
 
 // fetch("http://localhost:3000/api/roles")
 //   .then((response) => response.json())
@@ -61,6 +64,7 @@ const selectedRoles = computed(() =>
     }
   })
 );
+<<<<<<< HEAD
 
 // add the user to interested users for a role
 
@@ -82,6 +86,8 @@ function addIntrested(rId: string, uId: string) {
 
 
 
+=======
+>>>>>>> 2f1ca58fd76c7e7a13d42295b4a33830a48199a6
 </script>
 
 <template>
@@ -97,7 +103,7 @@ function addIntrested(rId: string, uId: string) {
   </v-dialog>
 
   <div class="flex grow justify-between">
-    <div class="bg-[#1a1c23] w-96 text-white">
+    <div class="bg-[#1a1c23] min-w-fit text-white">
       <div class="px-2 text-lg font-bold">Locations</div>
       <div class="flex flex-col items-center">
         <div
@@ -114,13 +120,13 @@ function addIntrested(rId: string, uId: string) {
           {{ l }}
         </div>
       </div>
-      <div class="text-white flex items-center justify-between p-2">
+      <div class="text-white flex items-center justify-between p-2 gap-8">
         Show remote locations
         <Switch
           @keyup.enter="remote = !remote"
           v-model="remote"
           :class="remote ? 'bg-purple-300' : 'bg-purple-200'"
-          class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out mr-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           <span
             :class="remote ? 'translate-x-[25px]' : 'translate-x-1'"
@@ -131,17 +137,18 @@ function addIntrested(rId: string, uId: string) {
     </div>
     <div class="flex flex-col items-center grow">
       <!-- Main part of the website -->
-      <div class="w-3/5 m-2 p-4 rounded-lg">
+      <div class="flex justify-center w-3/5 m-2 p-4 rounded-lg">
         <label class="sr-only">Search</label>
         <input
           id="search"
           v-model="role"
-          class="relative block w-full appearance-none rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+          class="min-w-fit w-80 relative block appearance-none rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           placeholder="Search your dream job..."
         />
       </div>
       <div
         v-for="r in selectedRoles"
+<<<<<<< HEAD
         class="w-9/10 flex justify-between text-white my-2 p-5"
       >
         <div class="flex items-center px-5 pl-10 ">
@@ -164,22 +171,33 @@ function addIntrested(rId: string, uId: string) {
             }
             "
         >
+=======
+        class="w-4/5 flex justify-between text-white m-2 p-5"
+        @click="
+          () => {
+            dialog = true;
+            chosenRole = r;
+          }
+        "
+      >
+        <div class="rounded-lg shadow-lg justify-around bg-[#1a1c23] mr-4 p-4">
+>>>>>>> 2f1ca58fd76c7e7a13d42295b4a33830a48199a6
           <div class="font-bold text-xl">{{ r.name }}</div>
           <div class="text-sm">{{ r.description }}</div>
         </div>
-        <div 
-            class="flex-2 rounded-lg shadow-lg justify-around bg-[#1a1c23] p-4 cursor-pointer"
-            @click="
-            () => {
-                dialog = true;
-                chosenRole = r;
-            }
-            "
+        <div
+          class="flex-2 rounded-lg shadow-lg justify-around bg-[#1a1c23] p-4"
         >
           <div class="font-bold text-xl">{{ r.company.name }}</div>
           <div class="text-sm">{{ r.company.description }}</div>
         </div>
+<<<<<<< HEAD
         <div class="flex justify-around gap-5 text-center bg-[#1a1c23] p-4 rounded-lg mr-12">
+=======
+        <div
+          class="flex justify-around gap-5 text-center bg-[#1a1c23] p-4 rounded-lg"
+        >
+>>>>>>> 2f1ca58fd76c7e7a13d42295b4a33830a48199a6
           <div>
             <div>Sustainability Score:</div>
             <PieChart :p="r.company.sustainabilityScore * 100" />
