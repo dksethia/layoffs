@@ -13,6 +13,7 @@ const race = ref("");
 const remote = ref(false);
 const climate = ref(false);
 const isDisabled = ref(false);
+
 const locations = ref([
   "London",
   " Manchester",

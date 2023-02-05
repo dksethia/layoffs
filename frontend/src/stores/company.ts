@@ -35,7 +35,11 @@ export const useCompanyStore = defineStore("company", () => {
     console.log(role);
   }
 
-  function getCandidates() {}
+  function getCandidates(roleId: string) {
+    return [
+      {id: "1", name: "David Blaine", formerCompany: "Google", formerRole:"Backend Developer"},
+    ]
+  }
 
   return { company, getCompany, addRole, getCandidates, getRoles };
 });

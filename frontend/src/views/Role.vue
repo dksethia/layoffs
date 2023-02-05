@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import router from '@/router';
 import { useRoute } from 'vue-router';
 import { useCompanyStore } from '@/stores/company';
+import CandidateCard from '@/components/company/CandidateCard.vue';
 
 const route = useRoute()
-const candidates = useCompanyStore().getCandidates()
 </script>
 
 <template>
-    <div>
-        {{ route.params.id }}
-    </div>
+    <CandidateCard
+      v-for="candidate in useCompanyStore().getCandidates(route.params.id[0])"
+      :key="candidate.id"
+      @click="router.push({ name: 'role', params: { id: candidate.id } })"
+      :candidate="candidate"
+    />
 </template>
