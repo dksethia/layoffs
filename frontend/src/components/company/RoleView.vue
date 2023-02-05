@@ -8,9 +8,11 @@ import RoleCard from "@/components/company/RoleCard.vue";
   <div class="p-5 flex flex-col grow">
     <h1 class="text-2xl font-bold">Roles</h1>
     <div class="flex justify-end pb-3">
-      <v-btn @click="router.push({ name: 'addRole' })"> Add new role </v-btn>
+      <v-btn @click="router.push({ name: 'addRole' })">Add new role </v-btn>
     </div>
     <RoleCard
+      tabindex="0"
+      @keyup.enter="router.push({ name: 'role', params: { id: role.id } })"
       v-for="role in useCompanyStore().getRoles()"
       :key="role.id"
       @click="router.push({ name: 'role', params: { id: role.id } })"

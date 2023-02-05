@@ -135,7 +135,7 @@ function submitForm() {
           <div class="px-4 py-3 text-right sm:px-6">
             <button
               @click="submitForm"
-              class="rounded-md bg-purple-300 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-2"
+              class="rounded-md bg-purple-300 py-2 px-4 text-sm font-medium text-black shadow-sm hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-2"
             >
               Create Role
             </button>

@@ -96,6 +96,7 @@ const selectedRoles = computed(() =>
       <div class="text-white flex items-center justify-between p-2">
         Show remote locations
         <Switch
+          @keyup.enter="remote = !remote"
           v-model="remote"
           :class="remote ? 'bg-purple-300' : 'bg-purple-200'"
           class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"

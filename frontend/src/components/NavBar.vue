@@ -32,7 +32,12 @@ const auth = useAuthStore();
         <div
           class="flex flex-1 items-center justify-between sm:items-stretch sm:justify-start text-2xl pl-2"
         >
-          <div class="font-bold" @click="() => router.push('/')">
+          <div
+            class="font-bold"
+            tabindex="0"
+            @keyup.enter="() => router.push('/')"
+            @click="() => router.push('/')"
+          >
             BackToBusiness
           </div>
         </div>
