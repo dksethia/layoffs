@@ -11,6 +11,7 @@ export const useCompanyStore = defineStore("company", () => {
     company.value = {
       id: "1",
       logoUrl: "logourl",
+      name:"Example Company",
       email: "example@example.com",
       recruited: 10,
       sustainabilityScore: 50,
