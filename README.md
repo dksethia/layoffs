@@ -30,7 +30,7 @@
 <img src="screenshots/CompanyRolePage.jpg" width="100%" />
 
 ## Company Candidates
-<img src="screenshots/CompanyCandidates.jpg" width="100%" />
+<img src="screenshots/CompanyCandidatesPage.jpg" width="100%" />
 
 ## Adding a new Position
 <img src="screenshots/AddNewRole.jpg" width="100%" />
