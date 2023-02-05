@@ -80,6 +80,8 @@ function addIntrested(rId: string, uId: string) {
     ));
 }
 
+
+
 </script>
 
 <template>
@@ -140,9 +142,10 @@ function addIntrested(rId: string, uId: string) {
       </div>
       <div
         v-for="r in selectedRoles"
-        class="w-4/5 flex justify-between text-white m-2 p-5"
+        class="w-9/10 flex justify-between text-white my-2 p-5"
       >
         <div class="flex items-center px-5 pl-10 ">
+            <label title="Let the company know that you're interested in this position!">
             <HeartEmpty 
                 v-if="!r.interestedPeople.includes(userId)" @click="
                 () => {
@@ -150,6 +153,7 @@ function addIntrested(rId: string, uId: string) {
                 }
                 "/>
             <Heart v-if="r.interestedPeople.includes(userId)"/>
+            </label>
         </div>
         <div 
             class="flex-5 rounded-lg shadow-lg justify-around bg-[#1a1c23] mr-4 p-4 cursor-pointer"
@@ -175,7 +179,7 @@ function addIntrested(rId: string, uId: string) {
           <div class="font-bold text-xl">{{ r.company.name }}</div>
           <div class="text-sm">{{ r.company.description }}</div>
         </div>
-        <div class="flex justify-around gap-5 text-center bg-[#1a1c23] p-4 rounded-lg">
+        <div class="flex justify-around gap-5 text-center bg-[#1a1c23] p-4 rounded-lg mr-12">
           <div>
             <div>Sustainability Score:</div>
             <PieChart :p="r.company.sustainabilityScore * 100" />
