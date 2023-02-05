@@ -8,13 +8,13 @@ const companies = [
     id: "1",
     email: "email@yt.com",
     name: "YouTube",
-    logo: "url",
-    sus_scote: 0.9,
+    logoUrl: "url",
+    sustainabilityScore: 0.9,
     description:
       "An amazing company where you can help build the website for watching cat videos.",
     website: "youtube.com",
-    role_name: "Software Engineer",
-    inclusive: true,
+    roleName: "Software Engineer",
+    inclusivityScore: 0.5,
     location: "US",
     remote: true,
   },
@@ -23,11 +23,11 @@ const companies = [
     email: "email@google.com",
     name: "Google",
     logo: "url",
-    sus_scote: 0.7,
+    sustainabilityScore: 0.7,
     description: "Come work for us, we fired all the good people.",
     website: "google.com",
     role_name: "Junior Software Engineer",
-    inclusive: false,
+    inclusivityScore: 0.8,
     location: "UK",
     remote: false,
   },
@@ -36,6 +36,8 @@ const companies = [
 let locations = new Set<string>();
 let remote = ref(true);
 let inclusive = ref(false);
+let dialog = ref(false);
+let chosenCompany = ref(companies[0])
 
 companies.forEach(function (company) {
   locations.add(company.location);
@@ -53,13 +55,8 @@ const selectedCompanies = computed(() =>
       selectedLocations.value.includes(c.location)
     ) {
       if (remote.value || (!remote.value && !c.remote)) {
-        if (!inclusive.value || (inclusive.value && c.inclusive)) {
           return c;
-        }
-      }
-    }
-  })
-);
+}}}));
 </script>
 
 <template>
@@ -86,19 +83,6 @@ const selectedCompanies = computed(() =>
           />
         </Switch>
       </div>
-      <div class="text-white flex items-center justify-between p-2">
-        Show only inclusive employers
-        <Switch
-          v-model="inclusive"
-          :class="inclusive ? 'bg-purple-500' : 'bg-purple-300'"
-          class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          <span
-            :class="inclusive ? 'translate-x-[25px]' : 'translate-x-1'"
-            class="translate-y-[2.8px] pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
-          />
-        </Switch>
-      </div>
     </div>
     <!-- Main part of the website -->
     <div class="w-3/5 bg-slate-800 m-2 p-4 rounded-lg">
@@ -111,14 +95,29 @@ const selectedCompanies = computed(() =>
         placeholder="Search your dream job..."
       />
     </div>
-    <div v-for="c in selectedCompanies" class="w-3/5">
+    <div v-for="c in selectedCompanies" class="w-3/5" @click="dialog = true">
       <div class="w-full bg-slate-800 m-2 p-4 rounded-lg">
         <div class="font-bold">{{ c.name }}</div>
         <div>{{ c.description }}</div>
-        <PieChart :p="c.sus_scote * 100" />
+        <div>Sustainability Score: <PieChart :p="c.sustainabilityScore * 100" /> </div>
+        <div>Inclusivity Score: <PieChart :p="c.sustainabilityScore * 100" /> </div>
       </div>
     </div>
-  </div>
+    <div class="text-center">
+        <v-dialog
+        v-model="dialog"
+        >
+        <v-card>
+            <v-card-text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </v-card-text>
+            <v-card-actions>
+            <v-btn color="primary" block @click="dialog = false">X</v-btn>
+            </v-card-actions>
+        </v-card>
+        </v-dialog>
+    </div>
+    </div>
 </template>
 <style scoped>
 :deep(input) {
