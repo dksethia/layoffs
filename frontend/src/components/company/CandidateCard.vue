@@ -5,7 +5,7 @@ const props = defineProps(["candidate"]);
 </script>
 
 <template>
-  <div class="flex justify-between bg-[#1a1c23] m-5 p-5 rounded items-center">
+  <div class="flex justify-between bg-[#1a1c23] m-5 p-5 rounded items-center hover:bg-[#1f1f2d]">
     <div>
       <div class="font-bold text-2xl">
         {{ `${props.candidate.firstName} ${props.candidate.lastName}` }}
