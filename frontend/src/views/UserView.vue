@@ -3,11 +3,11 @@ import { computed, ref } from "vue";
 import { Switch } from "@headlessui/vue";
 import PieChart from "../components/PieChart.vue";
 import type { RoleWithCompany } from "@/types/Role";
+import { stringifyExpression } from "@vue/compiler-core";
+import { useAuthStore } from "@/stores/auth";
 import { useUserStore } from "@/stores/user";
-import Heart from "../assets/Heart.vue"
-import HeartEmpty from "../assets/HeartEmpty.vue"
 
-const userId = "123"
+const userId = useUserStore().user!.id
 
 const roles = ref<RoleWithCompany[]>([
     {
@@ -61,25 +61,6 @@ const selectedRoles = computed(() =>
     }
   })
 );
-
-// add the user to interested users for a role
-
-function addIntrested(rId: string, uId: string) {
-    // PUT userId to the list of interested people
-  const requestOptions = {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ roleId: rId, userId: uId })
-  };
-  fetch("https://reqres.in/api/articles/1", requestOptions)
-    .then(response => response.json())
-    .then(data => (
-        roles.value.forEach((role) => {
-            if (role.roleId == rId) role.interestedPeople = data
-        })
-    ));
-}
-
 </script>
 
 <template>
@@ -149,76 +130,9 @@ function addIntrested(rId: string, uId: string) {
             }
           "
         >
-          {{ r }}
-        </div>
-      </div>
-      <div class="text-white flex items-center justify-between p-2">
-        Show remote locations
-        <Switch
-          @keyup.enter="remote = !remote"
-          v-model="remote"
-          :class="remote ? 'bg-purple-300' : 'bg-purple-200'"
-          class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          <span
-            :class="remote ? 'translate-x-[25px]' : 'translate-x-1'"
-            class="translate-y-[2.8px] pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
-          />
-        </Switch>
-      </div>
-    </div>
-    <div class="flex flex-col items-center grow">
-      <!-- Main part of the website -->
-      <div class="w-3/5 m-2 p-4 rounded-lg">
-        <label class="sr-only">Search</label>
-        <input
-          id="search"
-          v-model="role"
-          class="relative block w-full appearance-none rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-          placeholder="Search your dream job..."
-        />
-      </div>
-      <div
-        v-for="r in selectedRoles"
-        class="w-4/5 flex justify-between text-white m-2 p-5"
-      >
-        <div class="flex items-center px-5 pl-10 ">
-            <HeartEmpty 
-                v-if="!r.interestedPeople.includes(userId)" @click="
-                () => {
-                    addIntrested(r.roleId, userId);
-                }
-                "/>
-            <Heart v-if="r.interestedPeople.includes(userId)"/>
-        </div>
-        <div 
-            class="flex-5 rounded-lg shadow-lg justify-around bg-[#1a1c23] mr-4 p-4 cursor-pointer"
-            @click="
-            () => {
-                dialog = true;
-                chosenRole = r;
-            }
-            "
-        >
-          <div class="font-bold text-xl">{{ r.name }}</div>
-          <div class="text-sm">{{ r.description }}</div>
-        </div>
-        <div 
-            class="flex-2 rounded-lg shadow-lg justify-around bg-[#1a1c23] p-4 cursor-pointer"
-            @click="
-            () => {
-                dialog = true;
-                chosenRole = r;
-            }
-            "
-        >
-          <div class="font-bold text-xl">{{ r.company.name }}</div>
-          <div class="text-sm">{{ r.company.description }}</div>
-        </div>
-        <div class="flex justify-around gap-5 text-center bg-[#1a1c23] p-4 rounded-lg">
-          <div>
-            <div>Sustainability Score:</div>
-            <PieChart :p="r.company.sustainabilityScore * 100" />
+          <div class="flex-4 rounded-lg shadow-lg justify-around bg-[#1a1c23] mr-4 p-4">
+            <div class="font-bold text-xl">{{ r.name }}</div>
+            <div class="text-sm">{{ r.description }}</div>
           </div>
           <div class="flex-2 rounded-lg shadow-lg justify-around bg-[#1a1c23] p-4">
             <div class="font-bold text-xl">{{ r.company.name }}</div>
