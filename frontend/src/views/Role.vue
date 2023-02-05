@@ -11,7 +11,6 @@ const route = useRoute()
     <CandidateCard
       v-for="candidate in useCompanyStore().getCandidates(route.params.id[0])"
       :key="candidate.id"
-      @click="router.push({ name: 'role', params: { id: candidate.id } })"
       :candidate="candidate"
     />
 </template>
