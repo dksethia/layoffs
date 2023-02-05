@@ -39,7 +39,7 @@ const user = {
         <div>{{ user.lastName }}</div>   
     </div>
     <div>{{ user.email }}</div><div>{{ user.linkedin }}</div>
-    <div>Previous company:{{ user.formerCompany }} </div>
+    <div>Previous company: {{ user.formerCompany }} </div>
     <div>Most recent role: {{ user.formerRole }}</div>
     <div>Lives in: {{ user.location }}</div> 
     <div>Open for remote working: {{ (user.remote) ? "Yes!" : "Unfortunately not" }}</div>

@@ -3,36 +3,33 @@ import { computed, ref } from "vue";
 import { Switch } from "@headlessui/vue";
 import PieChart from "../components/PieChart.vue";
 import type { RoleWithCompany } from "@/types/Role";
+import { stringifyExpression } from "@vue/compiler-core";
+import { useAuthStore } from "@/stores/auth";
+import { useUserStore } from "@/stores/user";
 
-const roles = ref<RoleWithCompany[]>([]);
-// [  {
-//     id: "1",
-//     email: "email@yt.com",
-//     name: "YouTube",
-//     logoUrl: "url",
-//     sustainabilityScore: 0.9,
-//     description:
-//       "An amazing company where you can help build the website for watching cat videos.",
-//     website: "youtube.com",
-//     roleName: "Software Engineer",
-//     inclusivityScore: 0.5,
-//     location: "US",
-//     remote: true,
-//   },
-//   {
-//     id: "2",
-//     email: "email@google.com",
-//     name: "Google",
-//     logo: "url",
-//     sustainabilityScore: 0.7,
-//     description: "Come work for us, we fired all the good people.",
-//     website: "google.com",
-//     role_name: "Junior Software Engineer",
-//     inclusivityScore: 0.8,
-//     location: "UK",
-//     remote: false,
-//   },
-// ];
+const userId = useUserStore().user!.id
+
+const roles = ref<RoleWithCompany[]>([
+    {
+    company: {
+    id: "1234",
+    name: "YouTube",
+    email: "email@yt.com",
+    recruited: 90,
+    sustainabilityScore: 0.9,
+    inclusivityScore: 0.5,
+    description:
+      "An amazing company where you can help build the website for watching cat videos.",
+    website: "youtube.com",
+    logoUrl: "url"},
+    roleId: "1234",
+    companyId: "1234",
+    name: "Software Engineer",
+    location: "US",
+    remote: true,
+    description: "Role description description description description description description description description",
+    interestedPeople: ['123', '456']
+  }]);
 
 // fetch("http://localhost:3000/api/roles")
 //   .then((response) => response.json())
@@ -123,7 +120,7 @@ const selectedRoles = computed(() =>
       </div>
       <div
         v-for="r in selectedRoles"
-        class="w-4/5 shadow-lg flex justify-between bg-[#1a1c23] text-white m-2 p-5 rounded-lg"
+        class="w-4/5 flex justify-between text-white m-2 p-5"
         @click="
           () => {
             dialog = true;
@@ -131,11 +128,15 @@ const selectedRoles = computed(() =>
           }
         "
       >
-        <div class="flex flex-col justify-around">
+        <div class="flex-4 rounded-lg shadow-lg justify-around bg-[#1a1c23] mr-4 p-4">
           <div class="font-bold text-xl">{{ r.name }}</div>
           <div class="text-sm">{{ r.description }}</div>
         </div>
-        <div class="flex gap-5 text-center">
+        <div class="flex-2 rounded-lg shadow-lg justify-around bg-[#1a1c23] p-4">
+          <div class="font-bold text-xl">{{ r.company.name }}</div>
+          <div class="text-sm">{{ r.company.description }}</div>
+        </div>
+        <div class="flex justify-around gap-5 text-center bg-[#1a1c23] p-4 rounded-lg">
           <div>
             <div>Sustainability Score:</div>
             <PieChart :p="r.company.sustainabilityScore * 100" />
