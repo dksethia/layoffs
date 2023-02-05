@@ -34,11 +34,10 @@ const description = ref("");
 function submitForm() {
   companyStore.addRole({
     name: name.value,
-    link: link.value,
     location: location.value,
     remote: remote.value,
-    hybrid: hybrid.value,
     description: description.value,
+    interestedPeople: ['123'],
   });
 }
 </script>
