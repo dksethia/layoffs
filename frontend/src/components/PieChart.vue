@@ -2,9 +2,11 @@
 import { ref } from "vue";
 const props = defineProps(["p"]);
 const p = ref(0);
-setInterval(() => {
+const interval = setInterval(() => {
   if (p.value < props.p) {
     p.value += 2;
+  } else {
+    clearInterval(interval);
   }
 }, 15);
 </script>

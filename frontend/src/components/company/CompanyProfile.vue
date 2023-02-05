@@ -1,87 +1,70 @@
-<template></template>
-<!-- <script setup lang="ts">
-import type { Candidate } from "@/types/Candidate";
+<script setup lang="ts">
 import type { Company } from "@/types/Company";
 import { ref } from "vue";
+import PieChart from "../PieChart.vue";
 
 const company: Company = {
-  id: "1",
-  email: "email@yt.com",
+  id: "1234",
   name: "YouTube",
-  recruited: number,
-  sustainabilityScore: number,
-  inclusivityScore: number,
-  description: string,
-  website: string,
-  logoUrl: string,
+  email: "email@yt.com",
+  recruited: 900,
+  sustainabilityScore: 0.9,
+  inclusivityScore: 0.5,
+  description:
+    "An amazing company where you can help build the website for watching cat videos.",
+  website: "youtube.com",
+  logoUrl: "https://thispersondoesnotexist.com/image",
 };
 
-// // Fetching the data in real time
-// const user = ref(null)
-// fetch("http://localhost:3000/api/user")
-//     .then((response) => response.json())
-//     .then((data) => {
-//         user.value = data;
-//     });
+const companyRec = ref(0);
+const interval = setInterval(() => {
+  if (companyRec.value < company.recruited) {
+    companyRec.value += Math.max(Math.round(company.recruited / 100), 1);
+  } else {
+    companyRec.value = company.recruited;
+    clearInterval(interval);
+  }
+}, 15);
 </script>
 <template>
-  <div class="flex justify-center p-5 gap-5">
+  <div class="flex justify-center p-28 gap-5">
     <div class="flex flex-col">
       <div>
-        <v-avatar
-          size="20em"
-          image="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-        />
+        <v-avatar size="20em" :image="company.logoUrl" />
       </div>
-      <div>{{ user.firstName.toUpperCase() }}</div>
-      <div class="text-2xl font-bold">{{ user.lastName.toUpperCase() }}</div>
+      <div class="font-bold text-3xl">{{ company.name }}</div>
       <div class="mt-5">
-        {{ user.profileSummary }}
+        {{ company.description }}
+      </div>
+    </div>
+    <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center">
+        <div class="text-center">Sustainability Score</div>
+        <PieChart :p="company.sustainabilityScore * 100" />
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="text-center">Inclusivity Score</div>
+        <PieChart :p="company.inclusivityScore * 100" />
       </div>
     </div>
     <div class="w-1/2">
       <v-text-field
         disabled
-        :model-value="user.email"
+        :model-value="company.email"
         variant="outlined"
         label="Email"
       />
       <v-text-field
         disabled
-        :model-value="user.linkedin"
+        :model-value="company.website"
         variant="outlined"
-        label="Linkedin"
+        label="Website"
       />
-      <v-text-field
-        disabled
-        :model-value="user.formerCompany"
-        variant="outlined"
-        label="Former Company"
-      />
-      <v-text-field
-        disabled
-        :model-value="user.formerRole"
-        variant="outlined"
-        label="Most recent role"
-      />
-      <v-text-field
-        disabled
-        :model-value="user.location"
-        variant="outlined"
-        label="Lives in"
-      />
-      <v-text-field
-        disabled
-        :model-value="user.remote ? 'Yes!' : 'Unfortunately not'"
-        variant="outlined"
-        label="Open for remote working"
-      />
-      <v-text-field
-        disabled
-        :model-value="user.gender"
-        variant="outlined"
-        label="Gender"
-      />
+      <div class="flex flex-col items-center text-4xl">
+        Recruited
+        <div class="font-bold text-9xl">{{ companyRec }}</div>
+        People!
+      </div>
     </div>
   </div>
 </template>
@@ -89,4 +72,4 @@ const company: Company = {
 :deep(input) {
   background: none !important;
 }
-</style> -->
+</style>
