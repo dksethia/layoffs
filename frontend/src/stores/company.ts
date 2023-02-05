@@ -38,7 +38,7 @@ export const useCompanyStore = defineStore("company", () => {
 
   function getCandidates(roleId: string) {
     return [
-      {id: "1", name: "David Blaine", formerCompany: "Google", formerRole:"Backend Developer"},
+      {id: "1", firstName: "David", lastName: "Blaine", email: "dks20@ic.ac.uk", formerCompany: "Google", formerRole:"Backend Developer", experience: 3, linkedin: "https://www.google.com"},
     ]
   }
 

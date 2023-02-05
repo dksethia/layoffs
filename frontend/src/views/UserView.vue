@@ -2,60 +2,64 @@
 import { computed, ref } from "vue";
 import { Switch } from "@headlessui/vue";
 import PieChart from "../components/PieChart.vue";
+import type { RoleWithCompany } from "@/types/Role";
 
-const companies = [
-  {
-    id: "1",
-    email: "email@yt.com",
-    name: "YouTube",
-    logoUrl: "url",
-    sustainabilityScore: 0.9,
-    description:
-      "An amazing company where you can help build the website for watching cat videos.",
-    website: "youtube.com",
-    roleName: "Software Engineer",
-    inclusivityScore: 0.5,
-    location: "US",
-    remote: true,
-  },
-  {
-    id: "2",
-    email: "email@google.com",
-    name: "Google",
-    logo: "url",
-    sustainabilityScore: 0.7,
-    description: "Come work for us, we fired all the good people.",
-    website: "google.com",
-    role_name: "Junior Software Engineer",
-    inclusivityScore: 0.8,
-    location: "UK",
-    remote: false,
-  },
-];
+const roles = ref<RoleWithCompany[]>([]);
+// [  {
+//     id: "1",
+//     email: "email@yt.com",
+//     name: "YouTube",
+//     logoUrl: "url",
+//     sustainabilityScore: 0.9,
+//     description:
+//       "An amazing company where you can help build the website for watching cat videos.",
+//     website: "youtube.com",
+//     roleName: "Software Engineer",
+//     inclusivityScore: 0.5,
+//     location: "US",
+//     remote: true,
+//   },
+//   {
+//     id: "2",
+//     email: "email@google.com",
+//     name: "Google",
+//     logo: "url",
+//     sustainabilityScore: 0.7,
+//     description: "Come work for us, we fired all the good people.",
+//     website: "google.com",
+//     role_name: "Junior Software Engineer",
+//     inclusivityScore: 0.8,
+//     location: "UK",
+//     remote: false,
+//   },
+// ];
 
-let locations = new Set<string>();
-let remote = ref(true);
-let inclusive = ref(false);
-let dialog = ref(false);
-let chosenCompany = ref(companies[0]);
+// fetch("http://localhost:3000/api/roles")
+//   .then((response) => response.json())
+//   .then((data) => {
+//     roles.value = data;
+//   });
 
-companies.forEach(function (company) {
-  locations.add(company.location);
-});
+const locations = new Set<string>();
+const remote = ref(true);
+const dialog = ref(false);
+const chosenRole = ref<RoleWithCompany | null>(null);
 
-let selectedLocations = ref(Array<string>());
+roles.value.forEach((role) => locations.add(role.location));
+
+const selectedLocations = ref<Set<string>>(new Set<string>());
 
 // role to pass to the get request
 const role = ref("");
 
-const selectedCompanies = computed(() =>
-  companies.filter(function (c) {
+const selectedRoles = computed(() =>
+  roles.value.filter((role) => {
     if (
-      selectedLocations.value.length == 0 ||
-      selectedLocations.value.includes(c.location)
+      selectedLocations.value.size == 0 ||
+      selectedLocations.value.has(role.location)
     ) {
-      if (remote.value || (!remote.value && !c.remote)) {
-        return c;
+      if (remote.value || (!remote.value && !role.remote)) {
+        return role;
       }
     }
   })
@@ -63,16 +67,34 @@ const selectedCompanies = computed(() =>
 </script>
 
 <template>
+  <v-dialog v-model="dialog">
+    <div class="flex justify-center items-center">
+      <div class="bg-white rounded p-5">
+        <div class="text-xl font-bold">{{ chosenRole!.company.name }}</div>
+        <div>{{ chosenRole!.company.description }}</div>
+        <div class="font-bold">{{ chosenRole!.name }}</div>
+        <div>{{ chosenRole!.remote ? "Is remote" : "Is not remote" }}</div>
+      </div>
+    </div>
+  </v-dialog>
+
   <div class="flex grow justify-between">
     <div class="bg-[#1a1c23] w-96 text-white">
+      <div class="px-2 text-lg font-bold">Locations</div>
       <div class="flex flex-col items-center">
-        <v-select
-          v-model="selectedLocations"
-          label="Locations"
-          :items="Array.from(locations)"
-          multiple
-          class="w-full"
-        />
+        <div
+          v-for="l in locations"
+          class="w-full p-2 hover:bg-[#121317]"
+          :class="{ 'bg-[#243]': selectedLocations.has(l) }"
+          @click="
+            () =>
+              selectedLocations.has(l)
+                ? selectedLocations.delete(l)
+                : selectedLocations.add(l)
+          "
+        >
+          {{ l }}
+        </div>
       </div>
       <div class="text-white flex items-center justify-between p-2">
         Show remote locations
@@ -100,31 +122,28 @@ const selectedCompanies = computed(() =>
         />
       </div>
       <div
-        v-for="c in selectedCompanies"
+        v-for="r in selectedRoles"
         class="w-4/5 shadow-lg flex justify-between bg-[#1a1c23] text-white m-2 p-5 rounded-lg"
-        @click="dialog = true"
+        @click="
+          () => {
+            dialog = true;
+            chosenRole = r;
+          }
+        "
       >
         <div class="flex flex-col justify-around">
-          <div class="font-bold text-xl">{{ c.name }}</div>
-          <div class="text-sm">{{ c.description }}</div>
+          <div class="font-bold text-xl">{{ r.name }}</div>
+          <div class="text-sm">{{ r.description }}</div>
         </div>
-        <div>
-          Sustainability Score:
-          <PieChart :p="c.sustainabilityScore * 100" />
-        </div>
-        <div>Inclusivity Score: <PieChart :p="c.inclusivityScore * 100" /></div>
-        <div class="text-center">
-          <v-dialog v-model="dialog">
-            <v-card>
-              <v-card-text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </v-card-text>
-              <v-card-actions>
-                <v-btn color="primary" block @click="dialog = false">X</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+        <div class="flex gap-5 text-center">
+          <div>
+            <div>Sustainability Score:</div>
+            <PieChart :p="r.company.sustainabilityScore * 100" />
+          </div>
+          <div>
+            <div>Inclusivity Score:</div>
+            <PieChart :p="r.company.inclusivityScore * 100" />
+          </div>
         </div>
       </div>
     </div>

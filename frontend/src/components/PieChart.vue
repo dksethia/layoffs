@@ -10,14 +10,14 @@ setInterval(() => {
 </script>
 
 <template>
-  <div class="pie" :style="'--p: ' + p + '; --b: 15px; --c: #d5b4ff'">
+  <div class="pie" :style="'--p: ' + p + '; --b: 10px; --c: #d5b4ff'">
     {{ Math.round(p) }}%
   </div>
 </template>
 
 <style scoped>
 .pie {
-  --w: 150px;
+  --w: 100px;
   width: var(--w);
   height: var(--w);
   aspect-ratio: 1;
