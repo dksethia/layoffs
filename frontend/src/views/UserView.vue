@@ -7,38 +7,51 @@ import { stringifyExpression } from "@vue/compiler-core";
 import { useAuthStore } from "@/stores/auth";
 import { useUserStore } from "@/stores/user";
 
-const userId = useUserStore().user!.id;
+const user = useUserStore().user;
 
-const roles = ref<RoleWithCompany[]>([
-  {
-    company: {
-      id: "1234",
-      name: "YouTube",
-      email: "email@yt.com",
-      recruited: 90,
-      sustainabilityScore: 0.9,
-      inclusivityScore: 0.5,
-      description:
-        "An amazing company where you can help build the website for watching cat videos.",
-      website: "youtube.com",
-      logoUrl: "url",
-    },
-    roleId: "1234",
-    companyId: "1234",
-    name: "Software Engineer",
-    location: "US",
-    remote: true,
-    description:
-      "Role description description description description description description description description",
-    interestedPeople: ["123", "456"],
-  },
-]);
+const userId = user!.id;
+const formerRole = user!.formerRole;
 
-// fetch("http://localhost:3000/api/roles")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     roles.value = data;
-//   });
+const roles = ref<RoleWithCompany[]>([])
+
+fetch(`/api/user_query/${formerRole}`)
+  .then((response) => response.json())
+  .then((data) => {
+    const response = data.response
+    response.forEach(obj => {
+      const role = obj.role;
+      role.company = obj.company;
+      roles.value.push(role)
+    })
+  });
+
+  
+// [
+//   {
+//     company: {
+//       id: "1234",
+//       name: "YouTube",
+//       email: "email@yt.com",
+//       recruited: 90,
+//       sustainabilityScore: 0.9,
+//       inclusivityScore: 0.5,
+//       description:
+//         "An amazing company where you can help build the website for watching cat videos.",
+//       website: "youtube.com",
+//       logoUrl: "url",
+//     },
+//     roleId: "1234",
+//     companyId: "1234",
+//     name: "Software Engineer",
+//     location: "US",
+//     remote: true,
+//     description:
+//       "Role description description description description description description description description",
+//     interestedPeople: ["123", "456"],
+//   },
+// ]);
+
+
 
 const locations = new Set<string>();
 const remote = ref(true);
@@ -64,7 +77,6 @@ const selectedRoles = computed(() =>
     }
   })
 );
-<<<<<<< HEAD
 
 // add the user to interested users for a role
 
@@ -86,8 +98,6 @@ function addIntrested(rId: string, uId: string) {
 
 
 
-=======
->>>>>>> 2f1ca58fd76c7e7a13d42295b4a33830a48199a6
 </script>
 
 <template>
@@ -148,7 +158,6 @@ function addIntrested(rId: string, uId: string) {
       </div>
       <div
         v-for="r in selectedRoles"
-<<<<<<< HEAD
         class="w-9/10 flex justify-between text-white my-2 p-5"
       >
         <div class="flex items-center px-5 pl-10 ">
@@ -171,17 +180,6 @@ function addIntrested(rId: string, uId: string) {
             }
             "
         >
-=======
-        class="w-4/5 flex justify-between text-white m-2 p-5"
-        @click="
-          () => {
-            dialog = true;
-            chosenRole = r;
-          }
-        "
-      >
-        <div class="rounded-lg shadow-lg justify-around bg-[#1a1c23] mr-4 p-4">
->>>>>>> 2f1ca58fd76c7e7a13d42295b4a33830a48199a6
           <div class="font-bold text-xl">{{ r.name }}</div>
           <div class="text-sm">{{ r.description }}</div>
         </div>
@@ -191,13 +189,7 @@ function addIntrested(rId: string, uId: string) {
           <div class="font-bold text-xl">{{ r.company.name }}</div>
           <div class="text-sm">{{ r.company.description }}</div>
         </div>
-<<<<<<< HEAD
         <div class="flex justify-around gap-5 text-center bg-[#1a1c23] p-4 rounded-lg mr-12">
-=======
-        <div
-          class="flex justify-around gap-5 text-center bg-[#1a1c23] p-4 rounded-lg"
-        >
->>>>>>> 2f1ca58fd76c7e7a13d42295b4a33830a48199a6
           <div>
             <div>Sustainability Score:</div>
             <PieChart :p="r.company.sustainabilityScore * 100" />
