@@ -10,7 +10,7 @@ const newUser = ref<boolean>(false);
 
 <template>
   <div
-    class="text-white flex flex-col grow dark:bg-slate-800 grow min-h-screen justify-around items-center"
+    class="text-white flex flex-col grow bg-[#121317] grow min-h-screen justify-around items-center"
   >
     <div
       v-if="!accountType"
@@ -68,7 +68,7 @@ const newUser = ref<boolean>(false);
       <CompanySignIn v-else-if="accountType == 'company' && !newUser" />
       <button
         @click="accountType = null"
-        class="text-purple-500 hover:text-purple-400"
+        class="text-purple-300 hover:text-purple-200"
       >
         Go Back
       </button>

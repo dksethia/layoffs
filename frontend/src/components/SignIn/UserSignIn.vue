@@ -22,7 +22,7 @@ const password = ref("");
           <input
             v-model="email"
             type="email"
-            class="relative block w-full appearance-none rounded-none-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-purple-500 focus:outline-none focus:ring-purple-500 sm:text-sm"
+            class="relative block w-full appearance-none rounded-none-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-purple-300 focus:outline-none focus:ring-purple-300 sm:text-sm"
             placeholder="Email address"
           />
         </div>
@@ -30,7 +30,7 @@ const password = ref("");
           <input
             v-model="password"
             type="password"
-            class="relative block w-full appearance-none border rounded-b-md border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-purple-500 focus:outline-none focus:ring-purple-500 sm:text-sm"
+            class="relative block w-full appearance-none border rounded-b-md border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-purple-300 focus:outline-none focus:ring-purple-300 sm:text-sm"
             placeholder="Password"
           />
         </div>
@@ -42,7 +42,7 @@ const password = ref("");
             id="remember-me"
             name="remember-me"
             type="checkbox"
-            class="h-4 w-4 rounded border-gray-300 focus:ring-purple-500"
+            class="h-4 w-4 rounded border-gray-300 focus:ring-purple-300"
           />
           <label for="remember-me" class="ml-2 block text-sm"
             >Remember me</label
@@ -50,7 +50,7 @@ const password = ref("");
         </div>
 
         <div class="text-sm">
-          <a href="#" class="font-medium text-purple-500 hover:text-purple-400"
+          <a href="#" class="font-medium text-purple-300 hover:text-purple-200"
             >Forgot your password?</a
           >
         </div>
@@ -58,7 +58,7 @@ const password = ref("");
 
       <div>
         <button
-          class="group relative flex w-full justify-center rounded-md border border-transparent bg-purple-500 py-2 px-4 text-sm font-medium text-white hover:bg-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+          class="group relative flex w-full justify-center text-black rounded-md border border-transparent bg-purple-300 py-2 px-4 text-sm font-medium hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-2"
         >
           Sign In
         </button>
