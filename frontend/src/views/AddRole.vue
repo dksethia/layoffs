@@ -37,6 +37,7 @@ function submitForm() {
     location: location.value,
     remote: remote.value,
     description: description.value,
+    interestedPeople: [],
   });
 }
 </script>
