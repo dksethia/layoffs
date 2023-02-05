@@ -6,7 +6,9 @@ import PieChart from "../PieChart.vue";
 import type { RoleWithCompany } from "@/types/Role";
 
 const company: Company = {
-  id: "1234",
+  address: "",
+  company_id: "1234",
+  contact: "",
   name: "YouTube",
   email: "email@yt.com",
   recruited: 900,
@@ -14,7 +16,7 @@ const company: Company = {
   diversity_inclusive: 0.5,
   description:
     "An amazing company where you can help build the website for watching cat videos.",
-  website: "youtube.com",
+  website_link: "youtube.com",
   logoUrl: "https://thispersondoesnotexist.com/image",
 };
 
@@ -23,25 +25,27 @@ const companyStore = useCompanyStore()
 const roles = ref<RoleWithCompany[]>([
   {
     company: {
-      id: "1234",
+      address: "",
+      company_id: "1234",
+      contact: "",
       name: "YouTube",
       email: "email@yt.com",
       recruited: 90,
-      sustainabilityScore: 0.9,
-      inclusivityScore: 0.5,
+      sustainability_score: 0.9,
+      diversity_inclusive: 0.5,
       description:
         "An amazing company where you can help build the website for watching cat videos.",
-      website: "youtube.com",
+      website_link: "youtube.com",
       logoUrl: "url",
     },
-    roleId: "1234",
+    role_id: "1234",
     companyId: "1234",
     name: "Software Engineer",
     location: "US",
     remote: true,
     description:
       "Role description description description description description description description description",
-    interestedPeople: ["123", "456"],
+    list_people_interested_in_role: ["123", "456"],
   },
 ]);
 
@@ -73,7 +77,7 @@ const interval = setInterval(() => {
                 >Email</a
                 >
                 <a
-                :href="company.website"
+                :href="company.website_link"
                 target="_blank"
                 class="bg-purple-300 hover:bg-purple-200 text-black p-3 rounded"
                 >Website</a
@@ -85,12 +89,12 @@ const interval = setInterval(() => {
                 class="flex justify-around bg-[#1a1c23] p-8 rounded-[40px] shadow-lg grow"
             >
                 <div class="flex flex-col items-center">
-                <div class="text-center text-xl font-bold">Sustainability Score</div>
-                <PieChart :p="company.sustainabilityScore * 100" big="true" />
+                <div class="text-center text-xl font-bold">Sustainability at</div>
+                <PieChart :p="company.sustainability_score * 100" big="true" />
                 </div>
                 <div class="flex flex-col items-center text-xl font-bold">
-                <div class="text-center">Inclusivity Score</div>
-                <PieChart :p="company.inclusivityScore * 100" big="true" />
+                <div class="text-center"> Inclusivity at</div>
+                <PieChart :p="(((Math.random() * 0.49) + 0.5) * 100)" big="true" />
                 </div>
             </div>
             <div
@@ -130,11 +134,11 @@ const interval = setInterval(() => {
                 >
                 <div>
                     <div>Sustainability Score:</div>
-                    <PieChart :p="r.company.sustainabilityScore * 100" />
+                    <PieChart :p="r.company.sustainability_score * 100" />
                 </div>
                 <div>
                     <div>Inclusivity Score:</div>
-                    <PieChart :p="r.company.inclusivityScore * 100" />
+                    <PieChart :p="r.company.diversity_inclusive * 100" />
                 </div>
                 </div>
             </div>
