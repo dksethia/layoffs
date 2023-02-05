@@ -11,6 +11,7 @@ from .get_company_for_id import get_company_for_id
 from .get_roles_for_company import get_roles_for_company
 from .get_roles_for_user_query import get_roles_for_user_query
 from .get_users_for_roles import get_users_for_roles
+from .get_login_verification import get_login_verification
 
 from .post_create_new_company import post_create_company
 from .post_create_role import post_create_role
@@ -45,8 +46,10 @@ def request_get_users_for_roles(request, role_id=None):
     return Response(response, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
-def request_get_login_verification(request):
-    print(request)
+def request_get_login_verification(request, email=None, password=None):
+    print(email, password)
+    return Response(get_login_verification(email, password), status=status.HTTP_200_OK)
+
 
 
 @api_view(["POST"])
