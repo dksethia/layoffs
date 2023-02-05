@@ -65,8 +65,9 @@ def insert_into_Roles(tuples):
             location, \
             remote, \
             list_people_interested_in_role, \
-            embedding\
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            embedding,\
+            role_id\
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
     val = tuples
     mycursor.executemany(sql, val)
     mydb.commit()

@@ -19,28 +19,29 @@ from .post_create_new_user import post_create_user
 
 def ichack_view(request):
     """Serve the html file for the ichack"""
-    return render(request, "ichack.html")
+    return render(request, "index.html")
 
 
 
 @api_view(["GET"])
-def request_get_company_for_id(request):
-    response = get_company_for_id(request)
+def request_get_company_for_id(request, comp_id=None):
+    print(request)
+    response = get_company_for_id(comp_id)
     return Response(response, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
-def request_get_roles_for_company(request):
-    response = get_roles_for_company(request)
+def request_get_roles_for_company(request, comp_id=None):
+    response = get_roles_for_company(comp_id)
     return Response(response, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
-def request_get_roles_for_user_query(request):
-    response = get_roles_for_user_query(request)
+def request_get_roles_for_user_query(request, text=None):
+    response = get_roles_for_user_query(text)
     return Response(response, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
-def request_get_users_for_roles(request):
-    response = get_users_for_roles(request)
+def request_get_users_for_roles(request, role_id=None):
+    response = get_users_for_roles(role_id)
     return Response(response, status=status.HTTP_200_OK)
 
 
@@ -52,6 +53,7 @@ def request_post_create_new_user(request):
 
 @api_view(["POST"])
 def request_post_create_new_company(request):
+    print("request:", request.request.json())
     post_create_company(request)
     return Response({}, status=status.HTTP_200_OK)
 
