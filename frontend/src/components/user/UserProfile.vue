@@ -21,7 +21,7 @@ const user = {
 };
 </script>
 <template>
-  <div class="flex justify-center p-5 gap-5">
+  <div class="flex justify-center p-5 gap-5 mx-20">
     <div class="flex flex-col bg-[#1a1c23] p-8 rounded-[40px] shadow-lg">
       <div class="flex justify-center">
         <v-avatar
