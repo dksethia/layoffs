@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-const props = defineProps(["p"]);
+const props = defineProps(["p", "big"]);
 const p = ref(0);
 const interval = setInterval(() => {
   if (p.value < props.p) {
@@ -12,7 +12,18 @@ const interval = setInterval(() => {
 </script>
 
 <template>
-  <div class="pie" :style="'--p: ' + p + '; --b: 10px; --c: #d5b4ff'">
+  <div
+    class="pie"
+    :style="
+      '--w: ' +
+      (big ? 150 : 100) +
+      'px;' +
+      ';' +
+      '--p: ' +
+      p +
+      '; --b: 10px; --c: #d5b4ff'
+    "
+  >
     {{ Math.round(p) }}%
   </div>
 </template>
