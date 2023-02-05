@@ -19,8 +19,9 @@ def insert_into_Companies(tuples):
             sustainability_score, \
             diversity_inclusive, \
             description, \
-            password\
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            password,\
+            email\
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = tuples
     mycursor.executemany(sql, val)
     mydb.commit()
@@ -33,7 +34,7 @@ def insert_into_People(tuples):
             first_name, \
             last_name, \
             email, \
-            gender, \
+            gender,\
             former_company, \
             linkedin, \
             remote, \
@@ -42,13 +43,13 @@ def insert_into_People(tuples):
             diversity_preferences_disability, \
             diversity_preferences_minority, \
             sustainability_preferences, \
-            laidoff_time, \
             liked_roles, \
             former_role, \
             profile_summary, \
             keywords_in_ps, \
             years_of_experience, \
-            password\
+            password, \
+            race\
         ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = tuples
     mycursor.executemany(sql, val)

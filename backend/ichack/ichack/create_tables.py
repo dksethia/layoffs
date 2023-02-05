@@ -19,7 +19,8 @@ def create_Companies_table():
                 sustainability_score float,\
                 diversity_inclusive boolean,\
                 description text,\
-                password varchar(500)\
+                password varchar(500),\
+                email varchar(500)\
         );"
 
     mycursor.execute(sql)
@@ -42,13 +43,13 @@ def create_People_table():
                 diversity_preferences_minority boolean,\
                 diversity_preferences_disability boolean,\
                 sustainability_preferences boolean,\
-                laidoff_time DATE,\
                 liked_roles text,\
                 former_role varchar(500),\
                 profile_summary text,\
                 keywords_in_ps text,\
                 years_of_experience int,\
-                password varchar(500)\
+                password varchar(500),\
+                race varchar(500)\
         );"
 
     mycursor.execute(sql)
