@@ -34,11 +34,10 @@ const description = ref("");
 function submitForm() {
   companyStore.addRole({
     name: name.value,
-    link: link.value,
     location: location.value,
     remote: remote.value,
-    hybrid: hybrid.value,
     description: description.value,
+    interestedPeople: [],
   });
 }
 </script>
@@ -97,7 +96,7 @@ function submitForm() {
               Remote
               <Switch
                 v-model="remote"
-                :class="remote ? 'bg-purple-300' : 'bg-purple-300'"
+                :class="remote ? 'bg-purple-300' : 'bg-purple-200'"
                 class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
               >
                 <span
@@ -110,7 +109,7 @@ function submitForm() {
               Hybrid
               <Switch
                 v-model="hybrid"
-                :class="hybrid ? 'bg-purple-300' : 'bg-purple-300'"
+                :class="hybrid ? 'bg-purple-300' : 'bg-purple-200'"
                 class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
               >
                 <span

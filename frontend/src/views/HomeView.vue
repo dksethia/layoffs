@@ -5,6 +5,8 @@ import RoleView from "@/components/company/RoleView.vue";
 </script>
 
 <template>
-    <UserView v-if="useAuthStore().isUser()"/>
-    <RoleView v-else />
+    <div>
+        <UserView v-if="useAuthStore().isUser()"/>
+        <RoleView v-else />
+    </div>
 </template>

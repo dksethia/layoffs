@@ -4,6 +4,8 @@ import UserProfile from "@/components/user/UserProfile.vue";
 import CompanyProfile from "@/components/company/CompanyProfile.vue";
 </script>
 <template>
-    <UserProfile v-if="useAuthStore().isUser()"/>
-    <CompanyProfile v-else />
+    <div>
+        <UserProfile v-if="useAuthStore().isUser()"/>
+        <CompanyProfile v-else />
+    </div>
 </template>

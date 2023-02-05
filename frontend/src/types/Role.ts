@@ -5,12 +5,12 @@ export interface Role {
   location: string;
   remote: boolean;
   description: string;
-  interestedPeople: string[];
 }
 
 export interface RoleDB extends Role {
   roleId: string;
   companyId: string;
+  interestedPeople: string[];
 }
 
 export interface RoleWithCompany extends RoleDB {
